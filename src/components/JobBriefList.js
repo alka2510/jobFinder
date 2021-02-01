@@ -4,15 +4,17 @@ import JobDetails from "./JobDetails";
 
 const JobBriefList = ({ jobs })=>{
   const [selected, setSelected] = useState();
+  
 
   return (
     <div style={{ alignItems: "center" }}>
-      <div style={{float: 'left', width: '50%', maxWidth: "800px", paddingRight:"120px"}}>
+      <div style={{float: 'left', width: '50%', maxWidth: "800px", paddingRight:"120px"}} >
       {jobs.map((job) => {
         return (
           <JobBrief
             clicked={()=> setSelected(job)}
             job={job}
+            key={job.salary}
             name={job.name}
             logo={job.logo}
             description={job.description}

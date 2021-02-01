@@ -1,5 +1,5 @@
 import React from 'react';
-import Jobs from "./jobs.json";
+import Jobs from "../jobs.json";
 
 class SearchBarForName extends React.Component {
     state = {Jobs,term: '' };
@@ -15,12 +15,14 @@ class SearchBarForName extends React.Component {
     render() {
         
         return (
-            <div className="ui segment">
-                <form onSubmit={this.onFormSubmit} className="ui form">
-                    <div className="field">
-                        <label>Job name</label>
+            <div >
+                <form onSubmit={this.onFormSubmit} className="ui form" >
+                    <div>
+                        <label>Job name  </label>
+                        
                         <input type="text" autoFocus value={this.state.term} onChange={this.jobFilterOnChange}></input>
-                    </div>
+                        
+                        </div>
                 </form>
             </div>
         );

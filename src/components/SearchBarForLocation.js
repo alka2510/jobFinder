@@ -1,5 +1,5 @@
 import React from 'react';
-import Jobs from "./jobs.json";
+import Jobs from "../jobs.json";
 
 class SearchBarForLocation extends React.Component {
     state = {Jobs,jobLocation: '' };
@@ -15,11 +15,13 @@ class SearchBarForLocation extends React.Component {
     render() {
         
         return (
-            <div className="ui segment">
+            <div>
                 <form onSubmit={this.onFormSubmit} className="ui form">
                     <div className="field">
                         <label>Job location</label>
+                        
                         <input type="text" value={this.state.jobLocation} onChange={this.jobFilterOnChange}></input>
+                
                     </div>
                 </form>
             </div>
