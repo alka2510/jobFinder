@@ -1,18 +1,26 @@
-import { useState } from "react";
+import {connect} from 'react-redux';
+import React from 'react';
+
 import JobBrief from "./JobBrief";
-import JobDetails from "./JobDetails";
+import {selectJob} from "../actions";
+import Loading from "./Loading";
 
-const JobBriefList = ({ jobs })=>{
-  const [selected, setSelected] = useState();
-  
+class JobBriefList extends React.Component{
 
-  return (
-    <div style={{ alignItems: "center" }}>
-      <div style={{float: 'left', width: '50%', maxWidth: "800px", paddingRight:"120px"}} >
-      {jobs.map((job) => {
-        return (
+  state = { isLoaded: false};
+
+  componentDidMount(){
+    setTimeout(() => {
+      this.setState({ isLoaded: true})
+    }, 2000);
+  }
+
+  renderList(){
+    
+    return this.props.jobs.map((job)=>{
+      return(
           <JobBrief
-            clicked={()=> setSelected(job)}
+            clicked={()=> this.props.selectJob(job)}
             job={job}
             key={job.salary}
             name={job.name}
@@ -21,16 +29,26 @@ const JobBriefList = ({ jobs })=>{
             salary={job.salary}
             location={job.location}
           />
-        )
-      })}
-      </div>
-      <div>
-      <div style={{float: 'right', width: '50%', maxWidth: "800px",paddingRight:"120px"}}>
-        {selected ? <JobDetails selectedJob={selected}/> : <h4></h4>}
-      </div>
-      </div>
-    </div>
-  );
+        
+      );
+    })
+    
+  }
+
+  render(){
+    return(
+      <div>{ this.state.isLoaded ? 
+      <div className="ui divided list">{this.renderList()}</div> :
+      <Loading/>}</div>
+      );
+    
+  };
+  
+};
+const mapStateToProps = (state) =>{
+  return {jobs: state.jobs};
 };
 
-export default JobBriefList;
+export default connect(mapStateToProps, {
+  selectJob:selectJob
+})(JobBriefList);

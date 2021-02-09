@@ -3,7 +3,7 @@ function JobBrief(props) {
   const { city, country } = location;
 
   return (
-    <div onClick={clicked} >
+    <div onClick={clicked}  >
       <h4>{name}</h4>
       <h5>{`${city}, ${country}`}</h5>
       <img src={logo} alt="" className="img img-thumbnail" />

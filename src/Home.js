@@ -1,29 +1,23 @@
 import React from 'react';
-import JobBriefList from "./components/JobBriefList";
-import Jobs from "./jobs.json";
-import SearchBarForName from "./components/SearchBarForName";
-import Loading from "./components/Loading";
-import SearchBarForLocation from './components/SearchBarForLocation';
+import { connect} from 'react-redux';
 
+import JobBriefList from "./components/JobBriefList";
+import SearchBarForName from "./components/SearchBarForName";
+import SearchBarForLocation from './components/SearchBarForLocation';
+import JobDetails from "./components/JobDetails";
+import JobBrief from "./components/JobBrief";
 
 class Home extends React.Component {
   state = {
-    jobs: Jobs,
     term: "",
     jobLocation: "",
     isName:false,
-    isLoaded: false,
-    filterJob: [],
-    
+    filterJob: []
   };
-  componentDidMount(){
-    setTimeout(() => {
-      this.setState({ isLoaded: true})
-    }, 2000);
-  }
+
   onSearchSubmit = (term) => {
     this.setState({term: term});
-    let job = this.state.jobs;
+    let job = this.props.jobs;
     if(term){
       this.setState({filterJob:job.filter(job=>{
         return( job.name.toLowerCase().includes(term.toLowerCase()))
@@ -35,9 +29,9 @@ class Home extends React.Component {
     }
   }
 
-  onJobSubmit = (jobLocation)=>{
+  onLocationSubmit = (jobLocation)=>{
     this.setState({jobLocation: jobLocation});
-    let job= this.state.jobs;
+    let job= this.props.jobs;
     if(jobLocation){
       this.setState({filterJob:job.filter(job=>{
         return( job.location.city.toLowerCase().includes(jobLocation.toLowerCase()))
@@ -49,40 +43,69 @@ class Home extends React.Component {
     }
   }
 
-  
-  render() {
+  renderList(){
+    return this.state.filterJob.map((job)=>{
+      return(
+          <JobBrief
+            key={job.salary}
+            name={job.name}
+            logo={job.logo}
+            description={job.description}
+            salary={job.salary}
+            location={job.location}
+          />
+        
+      );
+    })
     
+  }
+
+  render() {
     return (
-      
-      <div  style={{alignItems:"center", paddingLeft:"400px"}}>
+      <div  style={{alignItems:"center", paddingLeft:"200px"}}>
         <div className="ui container">
           
           <div className="row" style={{padding:"15px"}}>
                 <div className="col">
-                  <SearchBarForName onSubmit={this.onSearchSubmit} />
+                  <SearchBarForName onSubmit={this.onSearchSubmit}/>
                 </div>
                 <div className="col">
-                  <SearchBarForLocation onSubmit={this.onJobSubmit}/> 
-                </div>
-                <div className="col" style={{paddingTop:"22px"}}>
-                  <button className="btn" ><a href="/profile" target="_blank">See your profile</a></button>
+                  <SearchBarForLocation onSubmit={this.onLocationSubmit}/> 
                 </div>
                 
             </div>
+            <div className="row">
+              <div className="col" style={{padding:"15px", alignItems:"center"}}>
+                <button className="btn" ><a href="/profile" target="_blank">See your profile</a></button>
+              </div>
+              <div className="col" style={{padding:"15px", alignItems:"center"}}>
+                <button className="btn"><a href="/companies" target="_blank">See comapany's job</a></button>
+              </div>
           
         </div>
-        
-        <div >
-          {this.state.isLoaded ? <JobBriefList jobs={this.state.isName && 
-            (this.state.term || this.state.jobLocation) ? this.state.filterJob :this.state.jobs
-          } /> :<Loading />}
+                
+            </div>
+            
+        <div className="row">
+        <div className="col" style={{maxWidth:"500px",paddingRight:"100px"}}>
+          {(this.state.isName && (this.state.term || this.state.jobLocation)) ? <div>
+          {this.renderList()}
+          </div> : <JobBriefList/> }
+        </div>
+        <div className="col" style={{maxWidth:"500px",paddingLeft:"100px"}}>
+          <JobDetails/>
+        </div>
+        <div>
+        </div>
         </div>
       
       </div>
-      
-      
     );
   }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {jobs: state.jobs}
+}
+
+export default connect(mapStateToProps)(Home);

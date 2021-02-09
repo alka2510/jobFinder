@@ -1,6 +1,11 @@
 import React from 'react';
-const JobDetails = ({ selectedJob }) => {
-    const { name, location, salary, description, logo } = selectedJob;
+import {connect} from 'react-redux';
+
+const JobDetails = ({job})=> {
+    if(!job){
+        return <div></div>
+    }
+    const { name, location, salary, description, logo } = job;
     const { city, country } = location;
     return (
         <div>
@@ -11,5 +16,11 @@ const JobDetails = ({ selectedJob }) => {
             <div>Salary: {salary / 1000}K</div>
         </div>
     )
+    
 };
-export default JobDetails;
+
+const mapStateToProps = state => {
+    return { job: state.selectedJob }
+}
+
+export default connect(mapStateToProps)(JobDetails);
