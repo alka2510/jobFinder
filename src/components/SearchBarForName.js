@@ -13,9 +13,11 @@ class SearchBarForName extends React.Component {
         return (
             <div >
                 <form onSubmit={this.onFormSubmit} className="ui form" >
-                    <div>
-                        <label>Job name </label>
+                    <div style={{display:'flex', flexDirection:'row'}}>
+                        <label >What  </label>
+                        &nbsp; &nbsp;
                         <input type="text" 
+                            placeholder="Job title, keywords or company"
                             autoFocus value={this.state.term} 
                             onChange={this.jobFilterOnChange}>
                         </input>

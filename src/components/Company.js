@@ -11,14 +11,17 @@ const Company = ({company}) => {
       <h1 style={{textAlign: 'center'}}>{company.name}</h1>
       {company.jobs.map((job, idx) => {
         return(
-          <div key={idx} className="jobs" style={{maxWidth: '40vw'}}>
-            <h2>{job.title}</h2>
-            <img src="https://picsum.photos/id/180/200/100" alt="" className="img img-thumbnail" />
+          <div key={idx} className="jobs" style={{maxWidth: '20vw'}}>
+            <h4>{job.title}</h4>
+            <img src="https://picsum.photos/id/180/200/100" alt="" className="job-post-image" /><br/><br/>
             <h4>{`${job.locations[0]}, ${job.locations[1]}, ${job.locations[2]}`}</h4>
             <div>Job Type: {job.jobType}</div>
-            <p><b>Requirements: </b> {`${job.requirements[0]}, ${job.requirements[1]}, ${job.requirements[2]}`}</p>
+            <p>Requirements: {`${job.requirements[0]}, ${job.requirements[1]}, ${job.requirements[2]}`}</p>
             <p className="salary">Salary: {job.salary}</p>
+            <button style={{backgroundColor: 'blue', color:'white' }}>Apply</button>
+            <button style={{backgroundColor: 'red', color:'white' }}>Not interested</button>
             <br/>
+            <hr/>
           </div>
         )
       })}

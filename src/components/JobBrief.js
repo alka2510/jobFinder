@@ -3,12 +3,14 @@ function JobBrief(props) {
   const { city, country } = location;
 
   return (
-    <div onClick={clicked}  >
+    <div className="jobs" style={{maxWidth: '20vw'}} onClick={clicked}  >
       <h4>{name}</h4>
       <h5>{`${city}, ${country}`}</h5>
-      <img src={logo} alt="" className="img img-thumbnail" />
+      <img src={logo} alt="" className="job-post-image" /><br/>
       <p>{description}</p>
-      <div>Salary: {salary / 1000}K</div>
+      <div className="salary">Salary: {salary / 1000}K</div>
+      <button style={{backgroundColor: 'blue', color:'white' }}>Apply</button>
+      <button style={{backgroundColor: 'red', color:'white' }}>Not interested</button>
       <hr />
     </div>
   );

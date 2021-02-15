@@ -13,13 +13,17 @@ class SearchBarForLocation extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div >
                 <form onSubmit={this.onFormSubmit} className="ui form">
-                        <label>Job location</label>
-                        <input type="text" 
+                    <div style={{display:'flex', flexDirection:'row'}}>
+                        <label >Where</label>
+                        &nbsp; &nbsp;
+                        <input type="text"
+                            placeholder="Enter city"
                             value={this.state.jobLocation} 
                             onChange={this.jobFilterOnChange}>
                         </input>
+                    </div>
                 </form>
             </div>
         );

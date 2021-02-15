@@ -1,18 +1,25 @@
 import React from 'react';
+import {BrowserRouter, Route} from 'react-router-dom';
+
+import Header from "./components/Header";
 import Home from "./Home";
 import Profile from "./components/Profile";
-import Route from "./components/Route";
+import JobBriefList from "./components/JobBriefList";
 import CompanyList from "./components/CompanyList";
+import GoogleAuth from "./components/GoogleAuth";
 
 const App = () => {
   return(
-    <div>
-        <Route path="/"><Home/></Route>
-        <Route path="/profile">
-        <Profile/>
-        </Route>
-        <Route path="/companies"><CompanyList/></Route>
-        </div>
+    <div className="ui container">
+      <BrowserRouter>
+        <Header/>
+        <Route path="/" exact component={Home} />
+        <Route path="/find-jobs" exact component={JobBriefList} />
+        <Route path="/companies" exact component={CompanyList} />
+        <Route path="/profile" exact component={Profile} />
+        <Route path="/login" exact component={GoogleAuth}/>
+      </BrowserRouter>
+    </div>
   );
 }
 export default App;

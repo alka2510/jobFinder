@@ -9,11 +9,12 @@ class CompanyList extends React.Component{
     renderList() {
         return(
             <div className="ui container" style={{padding:"15px"}}>
-                <div className="row ui large header" >
+                <div className="ui horizontal segments" >
                 {this.props.companies.map((company) => {
                     return (
                         <div key={company.userId}
-                         className="col" 
+                         className="ui segment" 
+                         style={{textAlign:'center', backgroundColor:'#D3D3D3'}}
                          onClick={()=>this.props.selectCompany(company)}> 
                             {company.name} 
                         </div>

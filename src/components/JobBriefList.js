@@ -15,6 +15,7 @@ class JobBriefList extends React.Component{
     }, 2000);
   }
 
+
   renderList(){
     
     return this.props.jobs.map((job)=>{

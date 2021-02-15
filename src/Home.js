@@ -62,10 +62,10 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div  style={{alignItems:"center", paddingLeft:"200px"}}>
-        <div className="ui container">
+      <div className="ui container" style={{alignItems:"center"}}>
+        <div >
           
-          <div className="row" style={{padding:"15px"}}>
+          <div className="row" style={{padding:"15px", marginTop: '20px', marginBottom: '20px'}}>
                 <div className="col">
                   <SearchBarForName onSubmit={this.onSearchSubmit}/>
                 </div>
@@ -73,21 +73,11 @@ class Home extends React.Component {
                   <SearchBarForLocation onSubmit={this.onLocationSubmit}/> 
                 </div>
                 
-            </div>
-            <div className="row">
-              <div className="col" style={{padding:"15px", alignItems:"center"}}>
-                <button className="btn" ><a href="/profile" target="_blank">See your profile</a></button>
-              </div>
-              <div className="col" style={{padding:"15px", alignItems:"center"}}>
-                <button className="btn"><a href="/companies" target="_blank">See comapany's job</a></button>
-              </div>
-          
+          </div>    
         </div>
-                
-            </div>
             
         <div className="row">
-        <div className="col" style={{maxWidth:"500px",paddingRight:"100px"}}>
+        <div className="col" >
           {(this.state.isName && (this.state.term || this.state.jobLocation)) ? <div>
           {this.renderList()}
           </div> : <JobBriefList/> }
