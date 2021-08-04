@@ -1,0 +1,12 @@
+.job_detail {
+  margin: 15px;
+  max-width: "22vw";
+  border: "solid 1px black";
+  margin: "20px";
+  padding: "10px";
+  text-align: center;
+  border: 10px;
+}
+/* style={{maxWidth: '22vw', textAlign: "center"
+    , border:'solid 1px grey',margin:"20px", 
+    padding:"10px", borderRadius:"10px"}} */

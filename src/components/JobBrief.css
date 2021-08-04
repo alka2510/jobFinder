@@ -1,0 +1,45 @@
+.jobs {
+  background-color: #f76376;
+  color: white;
+  margin: auto;
+}
+.jobs_list {
+  margin: 15px;
+  max-width: "40vw";
+  border: "solid 1px lightGrey";
+  margin: "20px";
+  padding: "20px";
+  text-align: center;
+}
+.job-post-image {
+  margin-bottom: 15px;
+}
+.job_name {
+  padding-top: 15px;
+}
+.apply_button {
+  background-color: rgba(7, 7, 138, 0.842);
+  color: white;
+  border-radius: 10px;
+  border: solid 1px rgba(7, 7, 138, 0.842);
+  margin: 10px;
+  margin-bottom: 25px;
+  padding: 10px;
+  width: 30%;
+}
+
+.notInterested_button {
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  border: solid 1px rgb(243, 74, 45);
+  margin: 10px;
+  margin-bottom: 25px;
+  padding: 10px;
+  width: 30%;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}

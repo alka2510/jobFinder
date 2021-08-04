@@ -1,27 +1,25 @@
-import {connect} from 'react-redux';
-import React from 'react';
-
+import { connect } from "react-redux";
+import React from "react";
+import "./JobBrief.css";
 import JobBrief from "./JobBrief";
-import {selectJob} from "../actions";
+import { selectJob } from "../actions";
 import Loading from "./Loading";
 
-class JobBriefList extends React.Component{
+class JobBriefList extends React.Component {
+  state = { isLoaded: false };
 
-  state = { isLoaded: false};
-
-  componentDidMount(){
+  componentDidMount() {
     setTimeout(() => {
-      this.setState({ isLoaded: true})
+      this.setState({ isLoaded: true });
     }, 2000);
   }
 
-
-  renderList(){
-    
-    return this.props.jobs.map((job)=>{
-      return(
+  renderList() {
+    return this.props.jobs.map((job) => {
+      return (
+        <div className="jobs">
           <JobBrief
-            clicked={()=> this.props.selectJob(job)}
+            clicked={() => this.props.selectJob(job)}
             job={job}
             key={job.salary}
             name={job.name}
@@ -30,26 +28,27 @@ class JobBriefList extends React.Component{
             salary={job.salary}
             location={job.location}
           />
-        
+        </div>
       );
-    })
-    
+    });
   }
 
-  render(){
-    return(
-      <div>{ this.state.isLoaded ? 
-      <div className="ui divided list">{this.renderList()}</div> :
-      <Loading/>}</div>
-      );
-    
-  };
-  
-};
-const mapStateToProps = (state) =>{
-  return {jobs: state.jobs};
+  render() {
+    return (
+      <div>
+        {this.state.isLoaded ? (
+          <div className="ui divided list">{this.renderList()}</div>
+        ) : (
+          <Loading />
+        )}
+      </div>
+    );
+  }
+}
+const mapStateToProps = (state) => {
+  return { jobs: state.jobs };
 };
 
 export default connect(mapStateToProps, {
-  selectJob:selectJob
+  selectJob: selectJob,
 })(JobBriefList);

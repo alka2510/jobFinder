@@ -1,0 +1,30 @@
+.header {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.header_menu {
+  display: flex;
+}
+
+.heading {
+  font-family: "MonteCarlo", cursive;
+  color: rgba(7, 7, 138, 0.842);
+  size: 70px;
+  padding-right: 20px;
+}
+
+.header_item {
+  padding-left: 33px;
+  font-family: "Georama", sans-serif;
+  font-size: 16px;
+  color: rgb(36, 32, 32);
+  font-weight: 700;
+}
+.header_logo {
+  height: 60px;
+  width: auto;
+  border-radius: 70%;
+}
